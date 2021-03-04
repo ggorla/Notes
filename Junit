@@ -1,0 +1,34 @@
+<scope>test</scope>
+
+	this defines if you want to add this in final build junit
+
+Test Life Cycle:
+
+	@BeforeAll: even before intlziing
+		define static
+	@BeforeEach: instance for each method
+	@AfterEach
+
+	@TestInstance(TestInstance.Lifecyvle.per_Method)
+	@DisplayName: is the name of the method
+
+	@Disabled: skip the test
+
+	conditional execution:
+
+		@ENabledOnOs
+		@EnabledOnJre
+		@EnabledIf
+		@EnabledIfSystemProperty
+		@EnabledIfEnvironmentVariable
+
+		AssumeThat(true) ex: if the server needs to be up
+
+		assetAll: run buntch of assertion at once:
+		@Nested:
+			orgainize
+
+		@repeatedTest(3) this record runs 2 times
+
+
+	@Tag: used to tag so we dont have to run all test at once

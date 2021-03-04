@@ -1,0 +1,482 @@
+
+
+IOC: Inversion of controll
+	find the beans
+	wire dependencies
+	manage lifecycle of the bean
+
+BeanScope:
+	Singleton: one bean instance per IOC
+	Prototype: Scopes a single bean definition to any number of object
+	Request: LifeCyvle of HTTP request, will be created on http request
+	Session:per one bean instance per http sesssion
+	globalSession: one bean per global http session
+
+Application context
+
+	two way to create:
+		1 XML: ClasspathCMLAPplication context
+		2. Java: @configuration define in a class and use that when creating new Annotaion configApplicaion Context
+	unit test:
+	SpringJunit4Class
+BeanFactory:
+	is the root interface for spring container which alows to instanation wiring, use when we want to save memory
+	sutable for mobile application 
+	* loads beans on demand
+Bean Factory vs Applicaion Context:
+	* implments beanfactory interface include all function
+	* application context loads all beans on startup vs beanfactory on demand
+
+Model2 frontcontroller:
+
+@RequestMapping: allows URL to map and method
+
+View-Resolver: is where you get the control to view
+
+Dispatcher Servlet: knows about controller  to redirect the request
+	Springboot will auto configure
+
+Model Vs ModelMap vs ModelAndView:
+
+Model: To provide a view with usable data, we simply add this data to 
+		its Model object. Additionally, maps with attributes can be merged with Model instances
+ModelMap: The advantage of ModelMap is it gives us the ability to pass a
+		collection of values and treat these values as if they were within a Map
+Form Backing object:
+	
+@pathVariable
+	mapping the URL to variable 
+@ModelAttribute:
+	will be available in the 
+	commonly needed attributes
+@SessionAttributes("name")
+	maintain the session  vairable
+@InitBinder
+	use the format when ever the binding happens
+	ex: dd/mm/yy to put validations
+@ControllerAdvice:
+	applys all the controller
+@ExceptionHandler:
+
+@SpringBootApplication:
+@ComponentScan:
+	under the package scanns for components
+@RestController: 
+	is used to handle methods that shall return JSON/XML response directly to client 
+		it dose job of both @Controller and @ResponseBody
+
+@Controler vs @RestController
+	-rest controller is way that http response body is created
+
+
+@RequestMapping(method= RequestMethod.GET, path = "/hello-world")
+@GetMapping
+	@PathVariable  is used to send the variable as part of the url path /user/{id} ID is called as Pathvariable
+@PostMapping is used to post
+
+@PathVariable: is the variables passed via endpoint
+	/hello-world/path-variable/in28minutes
+AUTOCONFIGURATION:
+	springbootautoconfigured.jar
+	loging.level.org.springframework:Debug
+@ConfigurationProperties(prefix="yaml")
+@propertySource(value=".yaml", factory = yamlPropertySourceFactory.class)
+
+ResponseEntityExecptionHandler:
+	to customized  abstract class accross all execption handleing
+
+XML format using :
+	jackson-dataformat-xml
+
+Embaded server:
+	inside jar
+	removes need installing in server
+	jetty and underTow
+
+	if we want to change from tomcat to other embedded server
+	change the xml. to exlude tomcat
+	<exclusion>
+		<groupId> springframework.boot</groupId>
+		<artificatId> spring-boot-starter-tomcat</artifactId>
+	</exclusion>
+	<dependency>
+		<groupId> springframework.boot</groupId>
+		<artificatId> spring-boot-starter-jetty</artifactId>
+
+
+Starter project:
+	pom.xml: 
+	spring-boot-starter-web-service- soap webservices
+	spring-boot-starter-web web & restfull application
+	spring-boot-starter-test - unit, integration testing
+	spring-boot-starter-jdbc Traditioanl JDBC
+						security - authorixation and authenticnation
+						cache enable spring frameworks
+
+Starter Parent:
+	Springboot dependency paRENT
+	defines: java version
+	encoding 
+	souuce of compilation
+
+Spring Initializr:
+	start.spring.io to create 
+
+Application.properties:
+	disable  security of actuator:
+	managment.security.enabled =false;
+
+	port:8080
+	central place to manage all the properties
+
+externilize confitration:
+	application.propertis is the way to externalinxe configurations
+
+	@Component
+	@ConfigurationProperties("basic")
+	public class BasicConfiguration{
+		private boolean value;
+		private String Message;
+		Private in number;
+	}
+
+	in other file:
+	@AutoWired
+	private BasicConfiguration configuration;
+
+@Profile:
+	indidivual properties:
+
+		application-dev.properties
+		application-qa.properties
+		application-pref.properties
+
+	passing as system argumens:
+		-Dspring.profile.active
+
+	or set as spring.profile.active=prod in application.properties
+
+	@profile("dev")
+		avilable to only dev
+	@Profile("prod")
+
+Spring Boot Actuator:
+	https://app.pluralsight.com/course-player?clipId=b61395de-61ca-421e-bc4a-cc8649560067
+
+	springboot dependecny in the Pom.xml
+	to check the memory:
+		localhost:8080/Actuator/metrics/jvm.memory.used
+	add the depennceys to avialble for monitoring tools
+		autoconfiguration
+		/health
+		metrics how many 200's, 404
+		/loggers
+		/env
+		/scheduledtask
+		/httptrace:
+		/configprops
+
+		
+	to access its 
+	/application
+
+
+
+CommandLinerRunner:
+	implment the run method
+
+
+JDBC:
+	setting paramaters
+	executing the connection
+	closing the connection
+
+Spring JDBC:
+	JDBC template:
+		update
+		example: jdbcTemplate.update
+				 jdbcTemplet.query
+	RowMapper: mapping the row to the table
+
+Hibernate is a interface
+JPA is a classes that inmplment interface
+JPA: Java persistant API
+
+	Hibernate
+	@Entity
+	@Table(name)
+
+SPringJAPrepository 
+to save the items
+entitymanager.persist()
+
+@PersestenceCOntext
+persistence context: once changes are made its tracked
+
+
+one to one
+	fetchType.lazy/eger
+
+@Repository
+@Transational: each method would inovlce in trasaction
+one to many
+
+@ManyToOne
+@JoinColumn
+
+Configuration:
+	defining the datasource:
+	property file:
+		db.driver
+		db.url
+		db.username
+		db.password
+
+	hibernate.properties
+		hibernate.dialect=org.hibernate.dialect.HSQLDialect
+
+	Persistence.xml:
+
+@Transactional
+
+
+@Mockit
+
+@Test
+	Datasevice dataseriveMock = mock(dataService.class)
+	when(dataseriveMock.retriveallData.thenReturn(new int[]{24,15,3})
+
+
+	@Mock: creates the service mock
+	@InjectMock:
+
+	@WebMvcTest
+	JSONAssert: comparring the JSON 
+	@SpringBootTest:
+
+
+Aspect orineted Programming:
+	cross custting:
+		logging, security, perfomance managment:
+
+
+	@Aspect
+	@Component
+	class myAspact{
+		@Before("execution(*HiByeService.*(..))")
+	}
+
+		@AfterReturning(pointcut="execution(* HiByeSerive.*(..))", returning = "result")
+			JointPoint
+
+		@Around()
+			proccedingJoinPoint
+
+	ADVICE:what do you want to do
+	POINTCUT: is what kind of methods want to intercept
+	ASPECT: ADVICE+ POINTCUT
+	JOINTPOINT: spefic executing point
+	Advice types:
+		Before advice
+		after retruning advice
+
+
+SOAP: 
+	Simple object access Protocor
+
+	exchange using this :
+
+		SOAP-env: envelope
+		SOAP-env: header
+		SOAP-env :Body
+
+	SOAP Request:
+		envlop
+		header
+		body
+
+	SOAP Response:
+		Binding using WSDL
+		Messages
+		PortType
+		Binding
+		Service
+
+	Contract first approch:
+		XSD:XML Scheama defination:
+
+	JAXB:
+		JAVA API for XML Bnding
+
+		@payLoadRoot:(namespace="http://in28minutes.com", localpart=)
+
+Dispatcher Servlet:
+	is the front controller, and know what is mapped to wich controller
+	logging.level.org.springframework=debug
+
+
+MessageDispatcherServlet:
+	first request goes to messageDispatcherServlet
+	how to configure:
+		servletRegistrationBean
+
+to generate WSDL: generated using XSD schema
+
+FaultCode:
+
+RESTFull
+
+	Representation state transfer:
+		http:
+
+	Designing the RestService 
+		1.what kind of Consumer we have
+		sending write response back
+			200
+			404 Resouce not found
+			400 bad request
+			201 created
+			401 unauthorisd
+			500
+		2.best use of HTTP what is provide
+		3.no secure info in URI
+		4. Purals 
+
+	GET Request:
+		@Getmapping("/users")
+
+	POST Request:
+		@PostMapping("/users")
+		content is mapped to @requestBody
+		service.save
+		with responseEntity send the status 
+
+
+Docummenting:  OpenAPI specfication
+	add dependency 
+	@configuration
+	@enableSwagger2
+
+	how to share the swagger :
+		url is localhost:8080/swagger-ui
+
+Content negoations using accpet: application/json
+
+
+Execption Handling:
+customnize the error :
+@ControllerAdivice: if you want to share the accross multiple Controller class
+	
+@
+	class ExecptionResponse
+		extends ResponseEntityExecptionHandler
+
+validaation
+	@Valid thorws execptions binding dosent match
+	@Size
+
+	@PostMapping("users")
+	public ResponseEntity<object>
+		createUser(@valid @RequestBody user user)
+
+
+Versioning:	
+	
+	URI Versioning:
+	as the requestParamater
+	headerVersion
+		@GetMapping
+	MIME type 
+
+
+Auto Configuration:
+	@EnableAutoConfiguration:
+		better performance 
+
+	@EnableAutoCOnfiguration(excludeName={a.b.somepackage})
+
+	@SpringBootApplication(excludeName={a.b.somepackage})
+
+	spring.autoconfigure.exclude = my.company.someAutoconfiguration
+
+	@ConditionalOnMissingBean: only exclude if the bean is not defined in application context
+
+	Dereegistration:
+
+Monitoring:
+	Hal and Actuactor:
+
+@JsonIgnore: ignore the fields to come in the rest endpoint
+
+@JsonIgnoreProperites: set on class level with comma sperated value.
+
+
+MappingJacksonValue = dynamic configure filter
+
+
+SPRING CLOUD:
+	SpringCloudCongifServer
+
+	Sacleing up and down:
+	naming server: service registriation
+		its responsible for providing correct url of the service when hosting multiple of them
+	Ribbon:Client load balancing
+
+
+
+
+BUILD:
+
+	.mvnw docker.build
+
+	generated
+
+	Git Clone:
+
+	push to google container image
+
+	jib-maven-plugin-build
+
+	check localy in cluster
+		docker run -ti --r
+
+
+SERVICE Discovery:
+	Eureka
+		Server side
+			register and un regester
+			servicce A Instance
+
+		HealthIndecator:
+
+CONFIGSERVER:spring.config.import=optional:configserver:http://localhost:8888
+
+
+resilience4j:
+
+	@Ratelimit: which allows to put limit for certain period
+	@BulkHead: concurrent calls
+	@Retry: will retry before it fails
+	@CircuteBraker: even if the microservice 2 is down will send the default response with out being intrupted the service to micro service 1
+
+Spring Cloud Hystrix:
+
+	bulkHead, fail fast, graceful degradtaion
+
+	hysti
+
+Spring Cloud Config server:
+
+
+if we want to derive properties from application.properties
+
+	1. create properties in application.properties
+		limit-service.max=1000
+		limit-service.min=1
+
+	2. create configuration calss
+		@Component
+		@ConfigurationProperties("limit-sevice")
+
+
+	

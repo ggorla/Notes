@@ -1,0 +1,228 @@
+Abstract:
+	* can have member variable that are inherited 
+	* cannot be instansnciated
+	* can decalre fields that are not static and final and define public protected and private concrete methods
+	* can extend only one parent class but it can implement multiple interfaces
+
+	when we want common methods
+	base case needs to provide methods to child casses
+
+Interface:
+	declarations 
+	Public static variable : they have to be static as they cannot be instansiacted
+	form a contract
+	Default methdds are allowed since java 8
+
+ClassLoader:
+	SystemClass Loader
+	Extenxion class Loader
+	BootStrap Class Loader: loads all the java Core files
+
+Wrapper Class:
+	lot of inbuilt methods
+	when null is possible value
+	use it in collection: to add it to collection we need wrapper class
+		Integer num1 = new Integer(55);
+	premitive variables like that we have wrapper class
+	ValueOf:
+		chance of using cache value
+
+Equals():
+	it checks the equality of two objects  content comparision
+==
+	address comparision of the object
+
+hashCode()
+	it returns memory refrence of object in integer form
+AutoBoxing:
+		automatic vonversion that the java compler make btween premitive type and there corresponding object wrapper class
+			Integer ten = new Integer(10);
+			ten++; // it would do Autoboxing
+
+		avantage:
+			Integer nineA = Integer(9);
+			Integer nineB = Integer(9);
+			
+			sout(nineA==nineB)//false
+			sout(nineA.equals(nineB));//true
+
+
+		wrapped created using boxing
+
+			Integer nineA = 9;
+			Integer nineB = 9;
+			
+			sout(nineA==nineB)//true
+			sout(nineA.equals(nineB));//true
+
+	Casting:
+		Implicit casting: smaller values in larger variable
+
+		Expelcting casting: int number2 = (int) number1
+
+Immutable:
+	String and Strinbuilderr:
+		string are immutabele 
+		String builder thread safty is not gaureented.
+
+Access Modifiers:
+	Default access modifiers available in same package
+	Private Access modifers: not available for super calls also
+	Protected access Modifers: only avialble for subclasses  and can be accessed in same package
+	Public Package:
+
+Final on calss 
+	extending is not allowed: Example: String and Integer are final 
+
+
+STATIC:
+ static single share instance 
+ 	private static int staticvariable
+ 	private int instanceVariable
+
+ 	private static int method();
+ 	{
+ 		ONLY STATIC VARIABLE CAN BE ACCESSED
+ 	}
+
+ 	private int method(){
+ 		both static and member level can be accessed
+ 	}
+
+toString() method:
+	why do we implment ?
+	becuase with out toString it gives the memory location
+	tostring method used to print the content of an object
+		public String toString()
+
+Constrcuctor:
+	super class is called object class
+
+
+Polymorphisam:
+	same code diffrent behavoir
+		extended 
+
+InstanceOf: if the object is of perticular type
+
+
+Static inner class: is able to instansiate at same place
+	outerclass.stacinestedclass staticnestedclass  = new outerclass.stacinestedclass()
+
+Inner class: we have to create instance of the outer class only then we can create 
+	OuterClass example = new outerclass();
+	outerclass.InnerClass innerclass =example.new innerclass()
+
+Ananmonys Class:
+	Animal animal new Anumla(){
+		test implemntaions
+	}
+	where it cannot be reaused
+
+Cohesion:
+	all methods are related to each other
+Below pointers
+•       Collections (TreeMap)
+•      Http/Http s
+•       REST Vs Soap
+•       Security Models / Data Security
+•       Distributed use case
+•       Data Structures
+•       NoSql
+•       Problem solving.
+
+REST: Representaional State Transfrer:
+	
+	Idemotent:can be called many times without diffrent outcome
+			Get Put, Delete, Head, Options and Trace HTTP
+	Non Idempotent method: Post
+
+	Post vs Put:
+		post create new object
+		Put is update or modify, ex update employee
+
+	HTTP Methods:
+		get, post, put, Delete, Options, Head, Patch
+
+		Method Information:
+			using HTTP Verb
+
+		Sccoping infomration: should go in URI
+
+		XML or JSON
+
+LIST VS SET
+
+	List contains duplicates elements	 
+	Set cannot contain duplicates
+
+
+HashSet and TreeSet:
+	Hashset mantains order but treeset maintains no order
+
+set and map:
+	only values maps contains key and values
+
+HashSet can be itrated but hashMap needs to be converter into set to be itrated.
+
+collection is an interface 
+collections is a class
+
+what dose hashCode Method
+
+how many ways to create objects in java
+
+	using New Keyword
+	calass.forName() if its has default public constructor
+	clone() no constructor is called
+	using object deserialization
+
+what is constructor:
+	is like method 
+
+Java 8: 
+	features : default and static methods in interfaces:
+
+				lamda expression
+				@functional interface
+				foreach()
+				stream API
+				LocalDate
+				LocalTime
+				LocalDateTime
+
+				timezone
+
+
+		multiple interfaces is not present because it create dimiond problem
+
+
+java streams:
+	source followed by 2 or more  and then collecttor:
+
+	streams can be created from collections, list sets ints logs double, arrays line of files
+
+		Intermediat operations: such as filte map or sort return a stream
+			parallelStreams to enable multi threading
+			anyMatch() flatmap() distinct() map() filter() skip() findFirst() sorted()
+
+		Terminal operations: foreach collect or reduce 
+
+				reduce the stream to single summary elements
+
+stable vs unstable:
+	unstable sort: 
+		if there are same element in a array to be sorted there postion is not preserved
+		for example: 5,9,3,9,8,4
+
+	stable sort:
+		 
+
+Garabage Collection GC:
+
+	marking
+	Deletion:
+		generational GC strategy
+
+
+

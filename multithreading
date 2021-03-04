@@ -1,0 +1,295 @@
+
+
+Resource:https://app.pluralsight.com/course-player?clipId=61cedfc6-68e9-4ad4-b969-c6dc0d7050ec
+
+Creating thread:
+2 ways to create thread
+	1. extending thread
+		public void run()
+		thread extending:
+			class class1 = new class();
+			class1.start() 
+	2. implmenting runnable:
+		create new thread and passing instance of the class
+			class class1 = new class();
+			Thread thread1 = new Thread(class1);
+			thread1.start();
+
+states of the thread:
+	new
+	runnable
+	running
+	blocked/waiting
+	Terminated/Dead
+
+Run vs Start:
+	start method new thread is created and then the run method is executed 
+		cannot call Start method more than once, will throw illegal stateException
+	but on run method then new thread will be created and run() method will be executed as a normal method
+
+Runnable VS Thread:
+
+
+	when class is exending other class then you should be using runnable
+	we can extend the class when using runnable
+
+
+	Race Condition: when 2 thread share same data in heap both read and write but not schynronozed
+		avoid by volatile and Synchrozed
+		thread interferance
+
+
+	Data Update visiblity:
+		Cache
+
+
+Basics of implmentaion:
+
+	class sampleClaseName implments Runnable{
+		public void doAdd() thows IOExecption{}
+		public void run(){
+			doAdd();
+		}
+	}
+
+	applicationclass:
+
+	try{
+	Thread[] threads = new Thread[inFile.length];
+		for(int i )
+		sampleClass cl  = new SampleClass()
+		threads[i] = new Thread(adder);
+
+		thread[i].start()
+	}
+	for(Thread thread:threads)
+		***********
+		thread.join()// blocks waiting for thread completionss
+			join() is recommended to use rather using Wait Notify or NotifyAll
+
+			JVM relies on wait() and Nofifyall() so its recommended to use Join on thread instances
+			TimeUnit.SECONDS.timedJoing(CountdownThread,10)
+
+
+Thread Pools:
+	provides queue where we can put the tasks
+	executorSerive Interface: can submit the task
+		request and wait for pool shutdown
+	Execurots Class:
+		method for creating pools
+			Dunamically sized pools
+			size limted pools
+			Pools that scheudle
+
+	ExecutorService Es = Exectors.newFixedThreadPools(3); // at any given time we are running 3 threads in pool
+	es.submit(adder);
+	es.shutdown();
+	es.awaitTermication(60, timeUnit.SECODS)
+
+Threading RelationShip:
+	callable Interface can return results
+		can trow execptions
+		caller has to wait for results
+
+	Future Interface:
+		represtn results a thread task
+			retured by executorService.Submit
+		get methods() 
+			block untill task compleats 
+			returns callable interface result
+			throws callable Interface execption
+LOCK(): ACUARE THE lock and execute:
+		to execute lowest priority
+
+priority:
+	default is 5
+	range is 1-10 10 is highest thread
+
+Runnable vs Callable:
+	
+	Callable can retunr a value but runnable cannot
+	callable can throw checked exeption but a runnable cannot
+	callable can be used 
+runnable 
+
+	example:
+		class BattingStaticicsThread extends Thread
+		{
+			public void run(){
+				for(int i = 0; i<1000; i++)
+				system.out.println(""running batting staticis thread"+i);
+			}
+		}
+
+		extends Thread
+		implments runnable
+
+		run thread in java:
+			BattingStaticicsThread bt1 = new BattingStaticicsThread();
+			bt1.start();
+
+		run runnable in java:
+			BowlingStaticsThread Bo1 = new BowlingStaticsThread();
+			Thread Bo2 = new Thread(Bo1);
+			Bo2.start();
+
+
+	NEW
+	RUNNABLE
+	RUNING
+	BLOCKED/WAITING
+	TERMINATED/DEAD
+
+		priority of thread by detault is 5 
+
+		thread.setPriority(8);
+		Thread.MAX_PRIORITY(10)
+		Thread.MIN_PRIORITY(1)
+		Thread.NORM_PRIORITY(5)
+
+
+	executorService: is a interface which allows us to execute  tasks on thread asynchronously, executorService helps in mantaining a pool threads and assign them task
+		it provides a way to queue up task untill there is free thread available in the number of tasks is more than threads available
+
+				new way to execute tasks async
+		ExectorService executorService = Executors.newSingleThreadExecutor();
+
+		executorService.execute(new Runnable()){
+			public void run(){
+
+			}
+		}
+		
+		threads bulk if threads to create:
+		ExectorService executorService = Executors.newFixedThreadPool(10);
+
+		Scheduling  give delay:
+		ExectorService executorService = Executors.newScheduledThreadPool(10);		
+
+
+		FUTURE: can check if the task has compleated
+
+		feture.get(); returns null  if the task has finished correctly
+
+		callable: return result from the thread
+
+			Future futurecallable = executorService1.submit(new callable(){
+				public String call() throws Execption{
+					return "Results";
+				}
+			}
+			system.out.println("futureromCallable.get()="+futureFromCallable.get());
+
+
+				ExectorService executorService = Executors.newSingleThreadExecutor();
+				executorService.execute(new Runnable(){
+					public void run(){
+						system.out.println
+					}
+				})
+
+Volatile:
+	visibility problom is solved like with flags updated in one thread and other thread we read
+	its has compound operation read and write 
+	will be read directly from main memory
+
+	if the varable is declared volatile 
+		all the other varaible also
+
+Synchorized:
+	indicates other threads to wait untill its executing serive is done with existing one.
+
+AtomicInteger:/AtomicLong are used by counters
+	IncrementAndGet
+	decrementAndGet
+	AddAndGet
+	CompareAndGet
+Daemon thread in java is a service provider thread that provides services to the user thread. Its life depend on the mercy of user threads i.e. when all the user threads dies, JVM terminates this thread automatically.
+
+Concurrency vs Parallel
+
+Paralle: each cpu has own thread
+
+Parallel COncurrent Execution::
+	Synchorized/Synchronization:
+
+	Intrepputed and IlleglThreadStateExecption
+
+
+		to work key needs to be defined: also called Monitor
+
+		Ex: public static synchronized:
+
+			public synchronized void  doCountDown(){
+			at the class level
+
+		synchronized keyword let only one thread to execute once
+		Method synchronixed:
+			synchronized int setandGetSum(int a1, int a2, int a3){
+
+			}
+
+		Block synchronized:
+			void testMehod()
+			{
+				synchronized(this)
+				{
+
+				}
+			}
+
+		join() will make thread to wait intill thread 2 is compleated
+		thread1.start();
+		thread2.start();
+		thread2.join(); 
+		thread3.start();
+
+		yeild(): says I have 
+		sleep(): pause for certain ammount 
+			can be called in synchronixed?
+
+		inter-thread communication
+			wait: 
+				schyncronized 
+				release lock
+				wait with mill
+			notify
+			notifyAll
+
+
+
+can we stop the threads
+
+threadpool.isIntrerupted
+
+
+	Sample:
+
+		class Calculator extends Thread{
+			long sum;
+
+			public void run(){
+				synchronixed(this){
+					for(int i = 0; i<10000; i++)
+					sum += i;
+				}
+				notify();
+			}
+		}
+
+		public class ThreadWaitAndNotify{
+
+			public static void main(String[] args){
+				Calculator thread = new Calculator();
+				thread.start();
+				synchronixed(thread){
+					try{
+					   thread.wait()
+					}catch (InteruptedExecption e){
+						e.printStackTrace();
+					}
+				}
+				System.out.println(thread.sum)
+			}
+
+		}

@@ -1,0 +1,314 @@
+Collections:
+	SET is unique set of elements , unordred set, we can stor one null value 
+		HashSet: 
+			Underling data stracture is HashTable
+			data will be stored in hashcode random order dose not maintain order
+					no duplicates
+					index represntation , searching 
+
+
+		LinkedHashSet:
+			underlying DataStrcture is LinkedList and HashTable
+			maintains Insertion order and permits Nul elements
+					insert delete
+					unique elemnts  pemits null elements
+					no duplicates
+					mantains insertion order
+					CONTAINS UNIQUE ELEMNTS 
+					ALLOWS NULL
+					LinkedHashSet lhs = new LinkedHashSet();
+		SortedSet: ordreing of elemnts 
+					increasing order
+
+					sortedset s = new TreeSet()
+
+		NavigableSet: which is used to closer to the condition
+					NavigblaSet<Integers> data = new Treeset<Integer>;
+		TreeSet: no duplicates
+					uses tree for storage
+					access time of tree set is quite fast
+					balanced binary tree for searching an element its very effecient
+	LIST: position of the objects dosent care about duplicates
+
+h		can add element at spefcfic index:
+		can contain duplicate
+
+		ArrayList: Duplicate element, Dynamically resize
+				 	maintain insertion order
+				 	elements can be randomly accessed
+					Non-sunchronized
+					efficient for random search like array[0] or array[200]
+					not effiecent for randaom inserts
+		LinkedList:Duplicate elments
+					pointer
+					mantain insertion orderß
+					manipulation is faster shifting
+					list and QUEU
+					effecent for insert
+					random access is inffeciaent
+		Vector:	synchronized and contains many methods that are not the part of collection
+			underliying data sructure is Array
+
+		Stack: 	last in first out, push pop
+
+	QUEUE: order of processing , first in first out
+		Priority Queue: Priporut of element
+		Deque: remove and add the elements from both the side
+				double ended queue
+		ArrayDeque:
+	MAP: is used to store Key value pair dosent extent collection
+		can have diplicate
+		when you put elemnt/key to hashmap it used HashCode()
+		mantains an array of buckers
+		computs modules of hash with bucket count
+		Put methods:
+		Enteryset to iterate the map and set the value
+		replace()
+		replaceAll( bifiction<k,v,v>)
+		remove(key, value) 
+		getOrDefault(): if there is null pointer execptiong we can use this methods to avoid and define null case in here
+		ComputeIfAbsent:
+		putifAbsent()
+		ComputeIfpresent
+		compute() looks upthe value
+		merge()
+
+		hashMap:
+			non synchronized
+			Allow only one null Key but multple null values
+
+		Hash Table:
+
+			it calculate based on % (mod) integer is performed
+			synchrozised
+			no nulls key or value
+
+		-> Extends:
+		Sorted map:
+			assending order
+
+		Tream Map:
+			no null key
+FAIL_fast:
+	thows concurrent Modificationexecption 
+		adding removing modify
+FailSafe:
+	dont thwow any execption.
+	work on Clone of collection insted of orginal
+
+
+BlockingQUEUE:
+	thread safe
+	it block that try to insert or take elements from Queue
+
+HASHSET:
+	contains unique elements 
+	allows null
+	non sychronized
+	dosent mantain the insertion order
+	best for search operations
+	not a key value pair
+	LOadFactor: new hashset would be generated.
+
+
+Map:
+	m1.entryset().equals(m2.entrySet())
+
+
+Hashing:
+	Hash Funtion 
+		hashCode()
+		equals()      
+HASHMAP:
+
+
+	Hashing Principle Map.Entry contains key and value 
+
+	dosent mantain any order, but while printing it prints  in order
+	unique keys
+	may have one null key and multiple null values
+	mantains insertion order
+
+	HashCode() to put 
+	maintains linked list when hashing collistion happens:
+
+LINKEDHASHMAP:
+	value based on key
+	unique elements
+	allow null keys
+	insertion order
+
+Idenity HashMap: values can be be same refrences  must be diffrenct
+
+	IdentityHashMap<Integer,String> m = new IdentityHashMap<>()
+	Integer a = new Integer(10);
+	Integer b = new Integer(10);
+
+	m.put(a,"First");
+	m.put(b,"Second");
+
+	here it prints 10= second,10=first
+
+WeakHashMap:
+
+	in hashMap key is not available for garbage collections
+	but in Weak HashMap will be 
+
+NAVIGABLE MAP:
+	HIGHER Key
+	LOWERKEY
+	celeaingkey
+	decendingkeyset
+	headmap
+
+
+TREEMAP:
+	underlying Datastrcuture:
+	insertion is not preserved, it mantains ascending order
+	dosent allow deupliicate keys
+	no Null key or value
+	
+ConcurrentHashMap: 
+	no lock while read and  sefment is locked while write  not fill object
+	is fail safe dose not throw concurrentModification
+
+CopyONWriteArrayList:
+	 update or write will create clone object
+	 for every update new clone is created
+Sorting:
+	COmparable interface: this is implment on class
+		myclass implment comparable{
+
+		}
+
+	comparator: if the class dosent inplment comparable then create own comparator and implment
+		myclass{
+
+		}
+		mycomparatorclass implments Comparator<myClass
+Synchronization:
+	is capability to controll the access of multiple threads to any shared resource
+	better option when we want only one thread to access the shared resource
+	prevent thread interference
+	every object has lock associated with it 
+	2 type: 
+		process synchronization
+		Thread synchronization:
+			mutual exclusive: helps keep threads from interferring with one another while sharing data
+				by synchronized method
+				by synchronized block
+				by static synchronization
+			cooperation (inter thread communication)
+
+ Iterator: the itrable interface is the root interface for all collection 
+base methods in collection interfaces
+	add()
+	remove()
+	size()
+	isEmpty()
+	clear()
+	contains()
+	containsAll()
+	addAll()
+	removeAll()
+	retainAll()
+
+	list extends Collection: 
+		any implmentaion of list interface mantain insertion order
+		Position is important
+		indexof()
+		index
+
+		ArrayList: is not thread safe
+			to make it thread safe we can use synchrozied block
+			List list = Collection.sunchronizedList(newArrayList());
+
+			synchronized(list){
+			Iteretor iterator = list.iterator();
+			}
+		Vector:  Thread safe
+
+		LinkedList: linked to each other implments QUeue interface, peek or pull
+
+
+	Set:
+		NO Duplicates
+
+		SortedSet: Implments comparable 
+				assending order
+
+				TreeSet:  it implments NavigableSet stored in accending order 
+
+		
+
+		HashSet: dosenot support order of insertion
+
+		LinkedHashSet: maintain the order of insertionƒ
+
+		
+
+	Map: supports Key value pair
+
+			get()
+			put()
+			remove()
+			putAll()
+
+			sortedmap order of the elements is 
+
+			NavigableMap: which is used to closer to the condition
+				want a key lower than this
+
+			Class:
+
+				HashMap: order is not garunted
+
+				ßTable: Order is not mantained sync Thread safe
+							Allows key with null value but HashMap dosent
+
+				LinkedHashMap: insertion order is maintained
+							slower insertion and deletion
+							faster iteration
+
+				TreeMap:
+					sorted 
+					.headmap is exclusive of map passed
+					.tailmap is inclusive of map passed
+
+
+	QUEUE:  
+		poll() returns null if q is empty
+		remove() remove the elements top elements, it trows execption
+
+		Deque: first or last processing
+			inserts element both side of q
+
+		BlockingQueue: wait for element to be avialble
+			wait for time to q to be available
+
+		PriorityQueue: sorted order
+					insertion orders are not preserved
+					dupliates are not allowed
+					null insertion is not allowed
+
+		ArrayDeque:
+		ArrayBlockingQueue:
+		LinkedBlockingQueue:
+STREAMS:
+
+	.filter is the condition ex: products.filter(products-> product.getWeight()>20)
+	.map is product.map(product::getname)
+	.anymatch
+	.noneMatch			====> all of this terminal operations return BOOlean
+	.allMatch
+	.skip	: n number of elements
+	.limit only certain 
+	.flatMap
+	.reduce product.reduce(0,((acc,product)-> acc+product.getweight()))
+
+
+
+	
+	unmodifiableMap will not let to modify the copy.
+
+race condtion

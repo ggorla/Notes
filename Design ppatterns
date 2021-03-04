@@ -1,0 +1,77 @@
+SAGA pattern:
+SOLID:
+	
+	Single responsiblility Principle :
+		There should never be more than one reason for a calss to change
+
+		ex: xml to json or Http to https
+
+		single functionality 
+
+	Open Closed Principle:
+		open for extension closed for Modification
+
+			close base class with out modifying -
+			open derived calss for new inheritance
+	Liskov substitution principle:
+
+
+	Interface pollution:
+		do not implment Interface 
+		fine grained interfaces than one spefic interface
+
+	Dependency Inversion Principle:
+		high level modules should not depend on low level modules
+
+		abstraction should not depend upon details
+
+		Dependency: 
+
+Gamma Categorization:
+
+
+Creational:
+	creating objects with the existing classes
+
+	Builder: avoid multiple same paramerers 
+		if there are too many constroctor arguments  then builder might help
+
+		example: user class
+				 address class
+				 userWebDTO.java
+				 userDTOBuilder.java
+				 userWebDTOBuilder.java is a base class
+				 	uses userDTObulder 
+
+			Director
+			and client
+		method chain: calling multiple methods with .method(test).method(test)
+
+		ex2: inner static class
+
+
+	Simple Factor: 
+		simply move out instantiation logic away from client code typically in a static method.
+
+		encapulate ad move away to a static method
+
+
+	Factory Method: encacapulate into diffrent class
+
+		method which can be overwriden in subclass
+
+	Prototype:
+
+	Abstract Factory:
+
+	Singleton:
+
+
+
+
+
+structural
+	structual pattersns arrange classes
+
+behavioral:
+	how classes communicate with each other

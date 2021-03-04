@@ -1,0 +1,49 @@
+checked and unchecked execption
+
+you cannot ignore the checked execption
+
+	should be handled using throw
+
+
+	checked execption is :
+		class a extends Execption{
+
+		}
+
+	Unchecked execption is :
+		class a extends RunTimeExecption{
+
+		}
+
+Throwable:
+	Execption: we can recover from execption using try catch block, execption are related to application
+		checked Execption: Compile time errors
+			IO Execption
+			SQL execption
+			ClassNot FoundExecption
+		UnChecked Runntime Execption: Compiler dont know about the error
+			null pointer Execption
+			Number Format Exepction
+			Index Out of Bound Execption
+				ArrayIndex out of Bound
+				StringIndex out of bound
+
+	Error: Recovering from error is not possible, errors are related to environemtn  all errores in java are unchecked type
+		Stack OverFlow Error
+		OutofMemory Error
+		Virtual Machine Error
+
+
+Throw: 
+	explicitly throw
+	used with in the method
+	cannot throw multiple execption
+
+Throws: 
+	declare execption
+	can declare multiple execptions
+
+
+Final: apply restriction on class method or varaibles:
+Finally: try and catch block to provide statments, finally is used close resourse
+Finalize: Cleanup process when garabage collected 

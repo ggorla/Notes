@@ -1,0 +1,30 @@
+Functional Interfaces:
+
+	@FunctionalInterface
+	must have only one abstract method,
+
+	can have any default method and  static methods 
+
+	 interface{
+	 	public  void method1()
+
+	 	default void method2(){
+
+	 	}
+
+	 	static void method3(){
+
+	 	}
+	 
+
+	Predicate is functinal interface
+		test() is only methods which returns boolean
+
+	Function<String, Integer> this returns integer of the lenth
+		apply() is the only method
+		Ex:
+			Function<String, Integer> len = str->str.length();
+        	int i = len.apply(s);
+        	System.out.println("Lenth "+i);
+	Consumer<String>
+		accept() returns nothign

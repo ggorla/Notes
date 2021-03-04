@@ -1,0 +1,194 @@
+
+
+Rest API:
+
+	request ->
+		verb
+		headers
+		content
+
+	response <-
+		status code
+		headers
+		content
+
+	forget the rexuest to next request its statless
+Request:
+	Verbs:
+		Ger: request resource
+		Post: Create Resurce
+		Put: Update resource
+		Patch: Update partital resource
+		Delete: delete resouce
+	
+	headers:
+		content Type
+		Content Length
+		Authorixation
+		Accept:
+		Cookies:
+
+	Content:
+		Html CSS Java Script
+		COntent is not valid with some verbs
+		binary and blobs common
+
+Response:
+	Status Code:
+		operation Status:
+			100-199 informational
+			200-200 success
+			300-299 Rewdirection
+			400-499 client erros
+			500-599 server Errors:
+
+	Headers:
+		Content Type
+		Content Length
+		Expires
+		Cookies:
+
+	Content:	
+		same as request
+
+
+
+what is REST:
+	Represtational state transfer
+		saperation of Client and Server
+		Server request are stateless
+		cacheable resource
+
+	problems: too difficurl to be qualified as
+
+		structured acthitural style
+		the need to be productive
+
+
+Design RestFulAPI:
+	Designing the API First:
+		becuase cant fix the API after publishing
+		help understand the requirments
+		well designed API can meture
+
+		URL ? what that path is 
+			Headers
+			Verbs
+			Status Code
+
+
+	Nouns and Verbs
+		nouns are good verbs are bad
+	URI Design
+	Status Codes
+	Designing Results.
+
+	Idemptent: operation results has same side effects
+
+
+Association of URI:
+	Search should use Quries
+	split the functounality 
+
+	Pagging
+
+
+HTTP Caching:
+
+	ETags: Entity tag
+		stront and weak caching support
+
+	etags caching
+	if-none-match
+
+	when some one is updating old verion of etag 412 precondition failed
+
+
+Versiong :
+	with uri
+	with header
+	with queryparamater
+Functional API:
+
+
+Authentication:
+	cookies:
+
+	Basic Authentication: Easy to implments:
+
+	Token Based application:
+		sends credientals
+		return token
+		inclueds token on subsequet calls
+		validate tokens
+
+		JWT:
+			userInformation
+			claims
+
+		OAuth:
+			request API:
+
+
+
+In Ajax, the request are sent to the server by using XMLHttpRequest objects. The response is used by the JavaScript code to dynamically alter the current page
+Ajax is a set of technology; it is a technique of dynamically updating parts of UI without having to reload the page
+Ajax eliminates the interaction between the customer and server asynchronously
+REST have a URL structure and a request/response pattern the revolve around the use of resources
+REST is a type of software architecture and a method for users to request data or information from servers
+REST requires the interaction between the customer and server
+
+
+Max-age for caching
+
+best practices:
+	validation
+	session based Authentication
+	no sensitive data 
+	restriction on method execution
+	valid Malformed XML/JSON
+	throw generiv erros
+
+https://www.tutorialspoint.com/restful/restful_statelessness.htm
+
+performing API testing:
+
+Accuracy of data
+Schema validation
+HTTP status codes
+Data type, validations, order and completeness
+Authorization checks
+Implementation of response timeout
+Error codes in case API returns, and
+Non-functional testing like performance and security testing
+
+
+SCALING:
+	Vertical
+		more cpu and Ram
+	Horizontal: 
+		More Mechine:
+		Registry: is registry to balance if there are more than one instance  and then load Balancer defines were it should go to
+
+	Availablity:
+		system to be operatonal
+
+		Single point of failuer:
+
+
+MONOTORING:
+	helth check 
+	logs
+	statitics of indvidual 
+	monotize our apis
+	rate limiting the API
+	
+
+
+
+
+
+
+
+
+

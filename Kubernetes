@@ -1,0 +1,242 @@
+Nodes:
+	mechine can be physical or virtual where K8 is installed
+	node is worker mechine where containers  might used
+
+Cluster is group of Nodes grouped together.
+
+managing cluster
+
+Master: waches over the nodes 
+	manager the cluster 
+	responsible for orchestraction
+
+
+components:
+	API Server
+	ETCD: key value store, logs 
+	Scheduler: distrubuting loads
+	Controllers: brain, any nodes gose down and bring up
+	COntainer Runtime: Docker
+	Kubelet: Agent, conters are running or not 
+
+Master vs worker Nodes:
+	Worker node: where containers are running
+	Master: Kube-Apiserver
+			etcd
+			controller
+			scheduler
+	WOker: Kubelet
+
+
+commands:
+	Kubectl run : is used to deploy application on cluster
+	kubectl cluster-info
+	kubectl get nodes 
+	kubectl version
+	kubectl get nodes -o wide
+	kubectl run nginx --image=nginx
+	kubectl describe pod nginx
+
+
+Containers are encuplate into pods
+scale up with pods no based on containers
+
+
+Installing home brew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+and then:
+
+export PATH="/opt/homebrew/bin:$PATH" >> ~/.zshrc
+
+minikube start --no-vtx-check
+
+Ymls:
+	apiVersion:
+	Kind:
+	Metadata:
+	Spec:
+
+
+	kubectl create -f pod-definitaion.yaml
+
+	kubectl get pods
+
+	kubectl describe pod myapp-pod
+
+Controller:
+	Replication Controller vs Replica set
+
+	Replicationcontroller:
+		helps us to spin up more if its fails, high avialibility
+		replicationcontroler:
+		replicationset: no much deiffrence 
+	apiVersion: v1
+	kind: ReplicationController
+	Metadata:
+		name: myapp-rc
+		labels:
+			app: myapp
+			type: front-end
+	spec:
+		template:
+			metadata:
+				name: myapp-pod
+				labels:
+					app: myapp
+					type: front-end
+			spec:
+				containers:
+					- name: ngnix-container
+					  image: nginx
+
+	replicas: 3
+
+	ReplicaSet: diffrence is replica set needs selector
+		user input is required for Selector
+
+		apiVersion: apps/v1
+		kind: ReplicaSet
+		metadata:
+		spec:
+		selector:
+			matchLabels:
+				type: front-end
+
+
+		replica set: monitor
+
+
+	to replace:
+		kubectl replace -f replicatasetdefination.yml
+
+	to update the replica set: enter in yaml or directly update in the command
+
+		kubectl scale --replicas=6 -f replciaset-definitaion.yml
+
+		kubectl scale --replica=6 replicaset-
+
+
+kubectl create -f rc-defination.yml
+
+kubectl create -f replicationcontroller
+
+
+Rollout and version:
+	kubectl rollout status deployment/myapp-deployment
+
+Deployment stratagey:
+	recreate
+	rollingupdate
+	rollbacl
+Deployment:
+
+
+Networking:
+	IP address of the Node:
+	Ip address is assigned to pod: 
+
+
+Kubernetes services: 
+	helps to connect other application , connectivitu for group of pods 
+	Node port service: which is running on Node which helps to communicate from system to pods
+		3 ports involved:
+			1. Port in the pod: target port
+			2. Port
+			3. Node port: which is used to access from externeall range: 30000- 32767
+
+
+	ClusterIP: 
+		estalish the connectivity
+
+		backend server
+		frontentserver
+		redis:
+	LoadBalancer:
+
+
+********
+Commands:
+
+to create replace and edit:
+kubectl create -f replicaset-definition.yml
+kubectl get replicaset
+kubectl delete replicaset myapp-replicaset
+kubectl replace -f replicaset-definitaion.yml
+kubectl scale -replicas=6 -f replicaset-d
+Kubectl describe replicaset myapp-replicaset
+kubectl edit replicaset myapp-replicaset
+kubectl rollout status deployment/myapp-deployment
+
+kubectl rollout undo deploument/myapp-deployment
+kubectl run nginx --image=nginx
+kubectl get pods -o wide
+kubeclt describe pod podname | grep -i image
+kubectl run  nginx-pod --image=nginx:alpine
+kubectl run redis --image=redis:alpine --labels=tire=db
+kubectl expose pod redis --name redis-service --port 6379 --target-port 6379
+
+to get the definitaion file:
+	kubectl get pod <pod-name> -o yaml > pod-definition.yaml
+
+to get the history:
+
+	kubectl rolloout history deployment/myapp-deployment
+
+kubectl get svc
+
+how to scale replica set ?
+	kubectl replace -f replicaset-definition.yml
+	kubectl scale --replace=6 -f replicaset-defination.yml
+	kubectl scale --replace=6 replicaset myapp-replicaset
+	kubectl scale replicaset --replicas=5 <replicaset name>
+
+Dry run:
+	kubectl create namespace finance --dry-run -o yaml
+
+	kubectl run redis --image=redis --dry-run=client -o yaml >pod.yaml
+
+NameSpaces:
+	if we want to group the environment then use namespaces
+		kubectl create -f pod-definitaion.yml --namespace=dev
+		kubectl -n finance get pod redis
+
+		kubectl get pods --namespace=dev
+	ApiVersion: v1
+	Kind: Namespace
+
+
+Docker commands:
+	FROM
+	Enterypoint: is the parameters which is passed as dynamicalliy
+	 to configure Default value we use
+	 	ex:
+	 		FROM ubuntu
+	 		EnttyPoint["sleep"]
+	 		cmd["5"]
+
+	 Docker run enterypoint
+
+	 entryppoint->Command
+	 cmd->Args
+
+	 to get the existing configuration
+	 kubectl get pod webapp -o yamml > my-new-pod.yaml
+
+	 env:
+	 	- name: APP_COLOR
+	 	  value: pink
+
+	 env:
+	    - name: APP_COLOR
+	      valueFrom:
+	         configMapKeyRef
+
+	 env:
+	    - name: APP_COLOR
+	      valueFrom:
+	         secretMapKeyRef
+Config Maps:
+	kubectl create configmap app-config --from-literal=APP_COLOR=red
+	kubectl create configmap app-config --from-file=application.properties
+
+Keep the code - DEVOPS15 - handy while registering for the CKA or CKAD exams at Linux Foundation to get a 15% discount

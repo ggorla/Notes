@@ -1,0 +1,22 @@
+
+Array:
+	Contoguous in memorySure
+	Every Element occopies the same amount of the sapce in memory
+	if we know the index of an element 
+	Memory X+i*Y
+
+	Time Complexity: 
+		retriving with index o(1)- constant time
+		retriving without index o(n)
+		when array is max of lenth Copy the array to new array and then add it to the end.
+		Insert or update an element
+
+
+Sortecd Algorighems:
+
+	Bubble Sort:
+		20 35 -15 7 55 1 -22
+
+		20 -15 7 35 1 -22 55
+		so now last index is sorted
+		

@@ -1,0 +1,11 @@
+docker:
+	FROM image name 
+	ADD target
+	ESPOSE:
+	ENTERYPOINT: ["java","-jar", "docker-spring-boot.jar"]
+
+To build the image:
+	Docker build -f Dockerfile -t docker-spring-boot .
+
+to run :
+	docker run -p 8085:8085 docker-spring-boot

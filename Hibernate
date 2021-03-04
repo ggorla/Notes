@@ -1,0 +1,105 @@
+Interfaces:
+
+	SessionFactory is used for sesssion object per database
+	Session: connecting application with DB physical connection CRUD operation
+	Transaction: 
+
+	SessionFactory factory= metadata.getSessionFactoryBulder().build()
+	Session session = factory.openSesssion();
+	tranastion t = session.beginTransactions()
+
+	session.save(persistancObj);//do something
+	t.commit() 
+	factory.close();
+	session.close()
+
+	@Entity  is entity beans
+	@Table: table name in databasema corssponding table name
+	@access: access type when getters and setters are used
+	@ID: primary key
+	@EmbeddedID: composit primary key
+	@Column: column name in 
+	@GeneratedValue: primary key generation of primar key
+	@CascadeL cascading btween two entity beans
+	@oneTOOne: mapping between 2 entity
+		@OneToOne(targetEntiry=CodeDecode.calss)
+		private CodeDecode codeDecode;
+
+	@ManyToOne:
+		class Student
+		@ManyTOOne)Cascade = cascadeType.ALL)
+		private Address address
+
+	@ManyToMany:
+		Third table will be creaed
+		on JoinColumns: primary key of the existing calss
+		InverseJoinColumns= 
+
+		@ManyToMany(TargetEntity=Degree.class, cascade={cascadeType.All})
+		@JoinTable(name=tablename(thirdtable),
+					joincolumns=@joincolum
+					inverseJoincolumns @joinColumn)
+
+			Third table will be created
+
+	@Cascade: used for cascadng btween two entity
+	@PrimaryKeyJoinColumn: used to defined property 
+
+Hibernate COnfiguration: hibernate cfg.xml
+	username password oracle drivers
+	mappingresource: class_name.hbm.xml
+
+	we need to create session factory for n number of database for n configuration file
+
+Hibernate mapping file:
+	classname.hbm.xml
+	mapping object to database columns 
+	<hibernate-mapping>
+
+sample end to end Hibernate:
+	create POJO(Java object) -> Mapping file(xml) -> create config file (db connection) -> implmnting class -> run the application to see results
+
+getCurrentSession(): returns session bound to the context
+openSession(): helps to open a new session
+
+get() as soon as its called loads the data
+load() suppoets lazyloading returns proxy object
+	only when data is present then use load()
+	load throw execption when it dosent find the data.
+
+
+Types of Cacheing:
+	reduce the number of database Queries
+
+	first level cache:
+		is assocaited with session object
+		by default its enabled
+		can clear the cache manually
+	second level cache:
+
+		Configuration file:
+		dependency: ehcache
+	query level:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
